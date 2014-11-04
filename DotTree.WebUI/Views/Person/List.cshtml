@@ -1,0 +1,14 @@
+﻿@using DotTree.Domain.Entities
+@model DotTree.WebUI.Models.PeopleListViewModel
+
+@{
+    ViewBag.Title = "People";
+}
+
+@foreach (var p in Model.People)
+{
+    @Html.Partial("PersonSummary", p)
+}
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { page = x, family = Model.CurrentFamily }))
+</div>

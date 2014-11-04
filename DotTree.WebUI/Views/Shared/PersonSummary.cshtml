@@ -1,0 +1,25 @@
+﻿@model DotTree.Domain.Entities.Person
+
+<div class="well">
+    <h3><strong>@Model.LastName, @Model.FirstName</strong></h3>
+    @Model.Id
+    <span class="pull-right label label-primary">@Model.ParentId &amp; @Model.ParentId2</span>
+    <span class="lead">
+        @if (null != Model.BirthMonth && null != Model.BirthDay)
+        {
+            string.Concat(Model.BirthMonth.ToString(), " ", Model.BirthDay.ToString(), ", ", Model.BirthYear.ToString());
+        }
+        else
+        {
+            if (null != Model.BirthMonth)
+            {
+                string.Concat(Model.BirthMonth.ToString(), ", ", Model.BirthYear.ToString());
+            }
+            else
+            {
+                Model.BirthYear.ToString();
+            }
+        }
+
+    </span>
+</div>
