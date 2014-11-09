@@ -34,6 +34,7 @@ namespace DotTree.WebUI.Infrastructure
         {
             // add bindings
             kernel.Bind<IPersonRepository>().To<EFPersonRepository>();
+            kernel.Bind<IFamilyRepository>().To<EFFamilyRepository>();
         }
     }
 }

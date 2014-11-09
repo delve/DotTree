@@ -1,0 +1,49 @@
+﻿@model DotTree.Domain.Entities.Family
+@{
+    ViewBag.Title = "Admin: Editing the " + @Model.FamilyName + " family";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="panel">
+    <div class="panel-heading"><h3>Edit the @Model.FamilyName family</h3></div>
+
+    @using (Html.BeginForm("EditFamily","Admin"))
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.Id)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if(property.PropertyName != "Id")
+                {
+                    <div class="form-group">
+                        @Html.ValidationMessage(property.PropertyName)
+                        <label>@(property.DisplayName??property.PropertyName)</label>
+                        @if(property.PropertyName=="Description")
+                        {
+                            @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                        }
+                        else
+                        if(property.PropertyName == "FamilyMembers")
+                        {
+                            foreach (var person in Model.FamilyMembers)
+                            {
+                                <br />@Html.ActionLink(
+                                    String.Format("{0} {1} {2} {3}", person.NamePrefix, person.FirstName, person.LastName, person.NameSuffix)
+                                    , "EditPerson", 
+                                    new { personId = person.Id })
+                            }
+                        }
+                        else
+                        {
+                            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                        }
+                    </div>
+                }
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Save" class="btn btn-primary" />
+            @Html.ActionLink("Cancel and return to Admin", "Index", null, new { @class = "btn btn-default" })
+        </div>
+    }
+</div>

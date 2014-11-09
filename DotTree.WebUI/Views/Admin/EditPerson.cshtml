@@ -1,0 +1,22 @@
+﻿@model DotTree.Domain.Entities.Person
+
+@{
+    ViewBag.Title = "Admin: Editing " + ViewBag.PersonSimpleName;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h3>Edit @Model.LastName, @Model.FirstName</h3>
+
+@using (Html.BeginForm("EditPerson","Admin"))
+{
+    @Html.EditorForModel()
+    <input type="submit" value="Save" />
+    @Html.ActionLink("Cancel and return to Admin", "Index")
+}
+<div class="panel-footer">
+    @using (Html.BeginForm("DeletePerson", "Admin"))
+    {
+        @Html.Hidden("personId", Model.Id)
+        <input type="submit" class="btn btn-default btn-xs" value="Delete" />
+    }
+</div>

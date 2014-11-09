@@ -47,10 +47,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
@@ -72,17 +68,54 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IFamilyRepository.cs" />
     <Compile Include="Abstract\IPersonRepository.cs" />
     <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFFamilyRepository.cs" />
     <Compile Include="Concrete\EFPersonRepository.cs" />
+    <Compile Include="Entities\Family.cs" />
     <Compile Include="Entities\Person.cs" />
+    <Compile Include="Migrations\201410301700181_InitialCreate.cs" />
+    <Compile Include="Migrations\201410301700181_InitialCreate.Designer.cs">
+      <DependentUpon>201410301700181_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411040036405_AddFamilyWithManyToMany.cs" />
+    <Compile Include="Migrations\201411040036405_AddFamilyWithManyToMany.Designer.cs">
+      <DependentUpon>201411040036405_AddFamilyWithManyToMany.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411060057262_AddedDataAnnotations-Family.cs" />
+    <Compile Include="Migrations\201411060057262_AddedDataAnnotations-Family.Designer.cs">
+      <DependentUpon>201411060057262_AddedDataAnnotations-Family.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201411082012288_AddDataAnnotation-Person.cs" />
+    <Compile Include="Migrations\201411082012288_AddDataAnnotation-Person.Designer.cs">
+      <DependentUpon>201411082012288_AddDataAnnotation-Person.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201410301700181_InitialCreate.resx">
+      <DependentUpon>201410301700181_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411040036405_AddFamilyWithManyToMany.resx">
+      <DependentUpon>201411040036405_AddFamilyWithManyToMany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411060057262_AddedDataAnnotations-Family.resx">
+      <DependentUpon>201411060057262_AddedDataAnnotations-Family.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201411082012288_AddDataAnnotation-Person.resx">
+      <DependentUpon>201411082012288_AddDataAnnotation-Person.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
